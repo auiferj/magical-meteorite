@@ -1,4 +1,8 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
 const pageTitle = "About Me";
 
 const identity = {
@@ -20,6 +24,8 @@ const footwear = "boots";
 const student = false;
 
 const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -29,21 +35,20 @@ const skillColor = "navy";
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{pageTitle}</title>
-        <style define:vars={{skillColor}}>
+        <style define:vars={{skillColor, fontWeight, textCase}}>
             h1 {
                 color: purple;
                 font-size: 4rem;
             }
             .skill {
                 color: var(--skillColor);
-                font-weight: bold;
+                font-weight: var(--fontWeight);
+                text-transform: var(--textCase);
             }
         </style>
 	</head>
 	<body>
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
+        <Header />
 		<h1>{pageTitle}</h1>
         <h2>... and my new Astro site!</h2>
 
@@ -77,5 +82,9 @@ const skillColor = "navy";
         <p>I have {quantity + 8} pairs of {footwear}</p>
 
         {operatingSystem === "MacOS" ? <p>I am using a Mac.</p> : <p>I am not using a Mac.</p>}
+        <Footer />
+        <script>
+			import "../scripts/menu.js";
+  		</script>
 	</body>
 </html>
